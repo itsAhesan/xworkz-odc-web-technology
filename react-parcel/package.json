@@ -1,0 +1,16 @@
+{
+  "name": "react-parcel",
+  "version": "1.0.0",
+  "description": "react project",
+  "license": "ISC",
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "devDependencies": {
+    "parcel": "^2.16.3"
+  },
+  "dependencies": {
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  }
+}
