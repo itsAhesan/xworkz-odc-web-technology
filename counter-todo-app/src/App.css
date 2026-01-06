@@ -1,0 +1,69 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+
+.app {
+  min-height: 100vh;
+  padding: 20px;
+}
+
+
+.dark {
+  background-color: black;
+  color: white;
+}
+
+
+.light {
+  background-color: white;
+  color: black;
+}
+
+
+.theme-btn {
+  padding: 8px 14px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+
+.content {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+
+.box {
+  border: 1px solid currentColor;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+}
+
+
+button {
+  margin: 5px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+
+input {
+  padding: 6px;
+  width: 70%;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
