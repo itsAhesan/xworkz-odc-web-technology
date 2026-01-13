@@ -59,3 +59,28 @@
 .body {
   padding: 20px;
 }
+
+
+.shimmer-card {
+  width: 250px;
+  padding: 10px;
+  margin: 10px;
+  background: #f0f0f0;
+}
+
+.shimmer-img {
+  height: 150px;
+  background: #e0e0e0;
+  margin-bottom: 10px;
+}
+
+.shimmer-line {
+  height: 15px;
+  background: #e0e0e0;
+  margin-bottom: 8px;
+}
+
+.shimmer-line.short {
+  width: 60%;
+}
+

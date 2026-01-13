@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import Card from "./RestoCard";
+import Shimmer from "./Shimmer";
 
-let Body = () => {
+const Body = () => {
   const [listOfResturants, setListOfResturants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     fetchRestaurants();
@@ -16,7 +19,6 @@ let Body = () => {
 
       const json = await response.json();
 
-      // ✅ CORRECT DATA EXTRACTION
       const restaurants =
         json?.data?.cards
           ?.find(
@@ -26,10 +28,15 @@ let Body = () => {
           ?.card?.card?.gridElements?.infoWithStyle?.restaurants;
 
       setListOfResturants(restaurants || []);
+      setFilteredRestaurants(restaurants || []);
     } catch (error) {
       console.error("Fetch failed:", error);
     }
   };
+
+  if (filteredRestaurants.length === 0) {
+    return <Shimmer />;
+  }
 
   return (
     <div className="body">
@@ -37,24 +44,46 @@ let Body = () => {
       <h3>Cheesilicious pizzas to make every day extraordinary.</h3>
       <h5>Restaurants to explore</h5>
 
+      {/* Search Section */}
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search restaurants..."
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
+
+        <button
+          onClick={() => {
+            const filteredData = listOfResturants.filter((restaurant) =>
+              restaurant.info.name
+                .toLowerCase()
+                .includes(searchText.toLowerCase())
+            );
+
+            setFilteredRestaurants(filteredData);
+          }}
+        >
+          Search
+        </button>
+      </div>
+
+      {/* Filter Section */}
       <button
         onClick={() => {
           const filteredData = listOfResturants.filter(
-            (restaurant) =>
-              restaurant.info.avgRating >= 4.5
+            (restaurant) => restaurant.info.avgRating >= 4.5
           );
-          setListOfResturants(filteredData);
+          setFilteredRestaurants(filteredData);
         }}
       >
         Top Rated
       </button>
 
+      {/* Restaurants List */}
       <div className="food-items">
-        {listOfResturants.map((restaurant) => (
-          <Card
-            key={restaurant.info.id}
-            resobj={restaurant}
-          />
+        {filteredRestaurants.map((restaurant) => (
+          <Card key={restaurant.info.id} resobj={restaurant} />
         ))}
       </div>
     </div>
